@@ -9,5 +9,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 https://www.tumblr.com/theme/41177  
 https://pastebin.com/C6Dc9Ad9  
 https://theme.getivan.com  
-https://www.getivan.com/post/668316633132056576/ivans-tumblr-blog-theme-for-seo  
+https://www.getivan.com/post/668316633132056576
 https://www.getivan.com 
