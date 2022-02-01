@@ -2,12 +2,11 @@
 <html lang="en">
     <head>
 
-
-
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="{text:Site keywords}">
         <meta name="author" content="{text:Site Author}">
+        <meta name="text:head tag code snippet" content="">
 
         <title>{block:PermalinkPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{/block:PermalinkPage}{Title}</title>
 
@@ -21,13 +20,15 @@
         <!-- open graph data -->
         <meta property="og:site_name" content="{Title}" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:image" content="{image:Logo} /">
-        <meta name="og:image" content="{image:Logo} /">
+        <meta name="twitter:image" content="{image:twitter image} /">
+        <meta name="og:image" content="{image:og image} /">
         <!-- open graph data -->
 
 
         {block:Hidden}
-        <meta name="image:Logo" content="https://static.tumblr.com/fk8bn8w/8ulqnqq7l/getivan-logo.png"/>
+        <meta name="image:Logo" content=""/>
+        <meta name="image:twitter image" content=""/>
+        <meta name="image:og image" content=""/>
         <meta name="color:Menu Bar Background" content="#282828"/>
         <meta name="color:Tag Menu Background Color" content="#282828"/>
         <meta name="color:Footer background color" content="#282828"/>
@@ -58,6 +59,10 @@
         <meta name="color:Scroll to top button hover color" content="#ffff"/>
         <meta name="color:Scroll to top text color" content="#ffff"/>
         <meta name="color:Scroll to top text hover color" content="#ffff"/>
+        <meta name="color:Search button background color" content="#D95E40"/>
+        <meta name="color:Search button text color" content="#ffff"/>
+        <meta name="color:Search input background color" content="#ffff"/>
+        <meta name="color:Search input text color" content="#000000"/>
 
       <!-- seo tags -->
       <meta name="text:Site keywords" content="">
@@ -189,6 +194,30 @@
         <meta name="select:Tumblr buttons" content="tumblr-btn-bottom" title="Show on bottom">
         <meta name="select:Tumblr buttons" content="tumblr-btn-hide" title="Hidden">
 
+        <meta name="select:Post page display property" content="flex" title="flex">
+        <meta name="select:Post page display property" content="block" title="block">
+
+        <meta name="select:Post page title alignment" content="center" title="center">
+        <meta name="select:Post page title alignment" content="left" title="left">
+        <meta name="select:Post page title alignment" content="right" title="right">
+        <meta name="select:Post page title alignment" content="justify" title="justify">
+
+        <meta name="select:Post page content alignment" content="space-between" title="space-between">
+        <meta name="select:Post page content alignment" content="start" title="start">
+        <meta name="select:Post page content alignment" content="center" title="center">
+        <meta name="select:Post page content alignment" content="end" title="end">
+        <meta name="select:Post page content alignment" content="space-around" title="space-around">
+        <meta name="select:Post page content alignment" content="space-evenly" title="space-evenly">
+
+        <meta name="select:Post page text alignment" content="left" title="left">
+        <meta name="select:Post page text alignment" content="center" title="center">
+        <meta name="select:Post page text alignment" content="right" title="right">
+        <meta name="select:Post page text alignment" content="justify" title="justify">
+
+        <meta name="select:Post page text vertical alignment" content="center" title="center">
+        <meta name="select:Post page text vertical alignment" content="start" title="start">
+        <meta name="select:Post page text vertical alignment" content="end" title="end">
+
         <meta name="if:Use logo image" content="1">
         <meta name="if:Hide Top Menu Bar" content="0"/>
         <meta name="if:Hide Tag Menu" content="0"/>
@@ -261,7 +290,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="shortcut icon" href="{FavIcon}" />
 
-        <!--<link rel="shortcut icon" href="https://www.getivan.com/assets/img/logos/offical-logo-getivan-2020-edition-32px-in-a-circle.png">-->
         <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
         <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
@@ -930,10 +958,11 @@ color:{color:Footer text color};
     overflow: hidden;
 }
 .sam-row {
-    display: flex;
+    display: {select:Post page display property};
     flex-flow: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: {select:Post page content alignment};
+    align-items: {select:Post page text vertical ignment};
+    text-align:{select:Post page text alignment};
 }
 .permalink-page .sam-col-md-6 img{
   height: 500px;
@@ -958,20 +987,25 @@ padding: 10px;
 outline: 0;
 border: unset;
 border-radius: 5px;
+background:{color:Search input background color};
+color:{color:Search input text color};
 }
 .search-bar .submit{
   width:unset;
   padding: 11px 20px;
     border: unset;
     border-radius: 5px;
-    color: white;
+    color: {color:Search button text color};
     outline: 0;
-    background-color:{color:Accent color};
+    background-color:{color:Search button background color};
     cursor:pointer;
 }
 
 h1, h2, h3, h4, h5, .post-title, .post-title > a{
     font-weight:bold !Important;
+}
+.sam-post,.sam-post a{
+  text-align: {select:Post page title alignment};
 }
 /*mobile screen and tablet screen*/
 @media only screen and (max-width: 768px) {
@@ -1008,6 +1042,9 @@ body .loading-mask {
           ga('send', 'pageview');
         </script>
         {/block:IfGoogleAnalyticsID}
+        <!-- head tag code snippet  start -->
+          {text:head tag code snippet}
+        <!-- head tag code snippet  start -->
     </head>
     <body class="loading {select:Tumblr buttons}">
 
@@ -1772,6 +1809,19 @@ body .loading-mask {
           $( ".permalink-page .tmblr-full" ).wrap( "<div class='sam-col-md-6'></div>" );
 
 
+        </script>
+        <script type="text/javascript">
+        document.querySelectorAll(`#categories a`).forEach(item=>{
+          if(item.href.includes('tag-link')){
+             let href=item.href.split('tag-link:');
+             if(href[1].includes('https://') || href[1].includes('http://') ){
+               item.href=href[1];
+             }
+             else {
+              item.href=`https://${href[1]}`;
+             }
+          }
+        });
         </script>
 
 
