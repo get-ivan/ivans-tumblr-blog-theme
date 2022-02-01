@@ -1,5 +1,5 @@
 # ivans-tumblr-blog-theme 
-The Perfect Tumblr Blog Template for SEO and PBNs. 
+The Perfect Tumblr Blog Template for SEO. 
 
 All Rights Reserved © GETIVAN LLC  
 This theme may be used for commercial projects and services, but may not be sold by itself in marketplaces.  
